@@ -1,0 +1,95 @@
+<div class="entete">
+  <h2>Welcome To Tunisie</h2>
+  <p>Tunisia is one of the countries of the Arab Maghreb with its capital, Tunis, and it is located in North Africa,
+    where the Mediterranean Sea borders it to the north and east, Libya borders it to the southeast, and Algeria borders
+    it to the west, and it occupies an area of 163610 km<sup>2</sup>
+    and It consists of twenty-four states
+  </p>
+</div>
+
+<div class="decalage" *ngFor="let state of states;">
+  <mat-accordion>
+    <mat-expansion-panel #mep="matExpansionPanel">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{state.name}}
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <p class="para">{{state.description}}</p>
+      <div class="container ml-50">
+        <div class="card-deck">
+          <div *ngFor="let placecard of placesCards ;let j=index">
+            <mat-card class="example-card" *ngIf="placecard.state == state">
+              <mat-card-header>
+                <div mat-card-avatar *ngIf="placecard.images[0]" class="example-header-image">
+                  <img src={{placecard.images[0].url}} alt="">
+                </div>
+                <mat-card-title>{{placecard.place.name}}</mat-card-title>
+                <mat-card-subtitle>{{placecard.state?.name}}</mat-card-subtitle>
+              </mat-card-header>
+              <div id="{{'carouselExampleIndicators'+placecard.id +j }}" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to={{k}} [ngClass]="{'active': k===0}"
+                    *ngFor="let k of placecard.indexes;"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item" [ngClass]="{'active': i===0}"
+                    *ngFor="let image of placecard.images; let i=index">
+                    <img class="d-block w-100" src={{image.url}} alt="First slide">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="{{'#carouselExampleIndicators'+placecard.id+ j }}" role="button"
+                  data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="{{'#carouselExampleIndicators'+placecard.id +j }}" role="button"
+                  data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+
+              <mat-card-content class="mt-3">
+                <p>
+                  {{placecard.place.description}}
+                </p>
+              </mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-card-actions>
+                <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="onLike(placecard);" [ngStyle]="{'color': placecard.reaction.is_like === 1 ? 'palevioletred' : 'black' }" >
+                  <i class="material-icons">favorite_border</i>
+                </button>
+                <button mat-icon-button (click)="onFavoris(placecard);"  [ngStyle]="{'color': placecard.reaction.is_favoris === 1 ? '#FFD300' : 'black' }">
+                  <mat-icon class="material-icons"> star_border </mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Example icon-button with a heart icon">
+                  <mat-icon>share</mat-icon>
+                </button>
+
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" (click)="verifAdherent()">
+                  <mat-icon class="material-icons"> add_circle_outline </mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item *ngFor="let collection of collections;"
+                    (click)="addPlaceToCollection(collection,placecard.place)">{{collection.name}}
+                  </button>
+                  <button mat-raised-button   color="accent" (click)="onCreateCollection(placecard.place.id)">New Collection</button>
+                </mat-menu>
+
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+        </div>
+        <mat-action-row>
+          <button mat-button (click)="mep.expanded = !mep.expanded">close</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

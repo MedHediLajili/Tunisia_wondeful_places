@@ -1,0 +1,35 @@
+
+mdb-card{
+  width: 700px;
+}
+
+.contour{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.button-image img{
+  margin: 4px;
+  margin-left: 6px;
+}
+.button-image label{
+  margin: 4px;
+}
+strong{
+  color:#3e2723;
+}
+.remove{
+border-radius: 70%;
+  height: 30px;
+  width: 30px;
+}
+
+.other {
+  margin-top: 20px;
+  margin-left:-10px;
+}

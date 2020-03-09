@@ -1,0 +1,100 @@
+<!-- Material form contact -->
+<mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<div class="contour">
+  <mdb-card>
+
+    <mdb-card-header class="red lighten-4 white-text text-center py-4">
+      <h5>
+        <strong>Edit Place</strong>
+      </h5>
+    </mdb-card-header>
+
+
+    <!--Card content-->
+    <mdb-card-body class="px-lg-5 pt-0">
+
+      <!-- Form -->
+      <form class="text-center" [formGroup]="editPlaceForm"   style="color: #757575;">
+
+        <!-- Name -->
+        <div class="md-form mt-3">
+          <input type="text" id="materialContactFormName" formControlName="name" class="form-control" mdbInput>
+          <label for="materialContactFormName">Name</label>
+        </div>
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>State</mat-label>
+          <mat-select [(value)]="this.selectedState">
+            <mat-option *ngFor="let state of this.states" [value] ="state.id">{{state.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+
+
+        <mat-grid-list cols="3" rowHeight="110px">
+          <div *ngFor="let photo of images ; let j = index">
+            <mat-grid-tile>
+              <div class="cadreimage">
+                <img src={{photo.url}} id="{{'photo'+ j}}" />
+                <br>
+                <button type="button" mat-raised-button (click)="removeOldImage(j)">
+                  <mat-icon>remove_circle_outline</mat-icon>
+                </button>
+              </div>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+
+        <mat-grid-list cols="3" rowHeight="170px">
+          <div formArrayName="images" *ngFor="let photo of getImages().controls; let i=index" >
+              <mat-grid-tile>
+                <div [formGroupName]="i">
+                  <div class="button-image">
+                    <label id="label-image" style="text-align: right;color: grey; font-weight: bold;">choose photo</label><br>
+                    <button type="button" mat-raised-button matInput (click)="fileInput.click()" color="accent">
+                      <mat-icon matPrefix>add_a_photo</mat-icon>
+                    </button>
+                    <br>
+                    <img id="{{'imag'+ i}}" />
+                    <input hidden formControlName="image" (change)="showImage($event.target.files,i);" #fileInput  type="file" id="file" #image>
+                  </div>
+                  <button  class="remove" type="button" mat-raised-button (click)="removeNewImage(i)"><mat-icon>remove_circle_outline</mat-icon></button>
+                </div>
+              </mat-grid-tile>
+          </div>
+          </mat-grid-list>
+          <div>
+            <button mdbBtn type="button" color="brown" mdbWavesEffect (click)="addImage()"> Add other photo</button>
+          </div>
+
+        <!-- Send button -->
+        <button mdbBtn color="red" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect darken-4" mdbWavesEffect
+        (click)="this.placeService.Clean(this.editPlaceForm)">
+        Clean
+        </button>
+
+        <button mdbBtn color="indigo" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect darken-4" mdbWavesEffect
+        (click)="onUpdate()">
+        Save
+        </button>
+
+
+      </form>
+      <!-- Form -->
+
+    </mdb-card-body>
+
+  </mdb-card>
+  </div>
+

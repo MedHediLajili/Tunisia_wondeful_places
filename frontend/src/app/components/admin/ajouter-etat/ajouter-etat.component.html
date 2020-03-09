@@ -1,0 +1,52 @@
+<!-- Material form contact -->
+<div class="did">
+<mdb-card>
+
+  <mdb-card-header class="indigo darken-4 white-text text-center py-4">
+    <h5>
+      <strong>New State</strong>
+    </h5>
+  </mdb-card-header>
+
+
+  <!--Card content-->
+  <mdb-card-body class="px-lg-5 pt-0">
+
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;">
+
+      <!-- Name -->
+      <div class="md-form mt-3">
+        <input type="text" id="materialContactFormName" class="form-control" [(ngModel)]="this.state.name" name="name" mdbInput>
+        <label for="materialContactFormName">Name</label>
+      </div>
+
+      <!-- Subject -->
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <mdb-select [options]="optionsSelect" placeholder="Choose your option"></mdb-select>
+        </div>
+      </div>
+
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Description" [(ngModel)]="this.state.description" name="description"></textarea>
+      </mat-form-field>
+
+      <!-- Send button -->
+
+      <button mdbBtn color="red" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect darken-4" mdbWavesEffect
+      (click)="this.stateService.Clean(this.state)">
+      Clean
+      </button>
+
+      <button mdbBtn color="indigo" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect darken-4" mdbWavesEffect
+        type="submit" (click)="AddState()">Add</button>
+
+    </form>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>
+</div>

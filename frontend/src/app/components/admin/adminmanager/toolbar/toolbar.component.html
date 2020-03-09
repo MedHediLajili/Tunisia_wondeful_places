@@ -1,0 +1,22 @@
+<mat-toolbar >
+  <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+    <span class="example-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu">
+        <div class="d-flex flex-row mt-2">
+            <p>{{this.admin.pseudo}}</p>
+        </div>
+    </button>
+<mat-menu #menu="matMenu">
+  <!--<button mat-menu-item> <img src="../../../../../assets/images/settings.png" class="mr-2"/> Settings</button>
+  <button mat-menu-item> <img src="../../../../../assets/images/envelope.png" class="mr-2"/> Messages</button>-->
+  <button mat-menu-item (click)="onEdit()"> <img src="../../../../../assets/images/user.png" class="mr-2"/> Profil</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="onLogout()" > <img src=".././../../../../assets/images/power.png" class="mr-2" />  LogOut</button>
+</mat-menu>
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+

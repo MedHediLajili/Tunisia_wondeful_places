@@ -1,0 +1,48 @@
+
+
+<!--Navbar-->
+<mdb-navbar  SideClass="navbar navbar-expand-lg  navbar-light blue-grey lighten-5 sticky-top" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+    <img class="logo" src="../../assets/images/logo.jpg" height="25" alt="">
+  </mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" mdbWavesEffect  [routerLink]="['home']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> <img src="../../../../assets/images/home-icon-silhouette.png" class="mr-2"/>Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" mdbWavesEffect [routerLink]="['home/states']" routerLinkActive="active"> <img src="../../../../assets/images/museum.png"/> States</a>
+      </li>
+      <!--<li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect > <img src="../../../../assets/images/warning.png"/>  Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect> <img src="../../../../assets/images/warning.png"/>  About Us</a>
+      </li>-->
+      <button mat-button [matMenuTriggerFor]="menu">
+        <i *ngIf="!this.tokenService.getToken()" class="material-icons" mdbDropdownToggle>favorite</i>
+        <img *ngIf="this.tokenService.getToken()" src={{adherent.photo}} alt="photo aderent" class="userphoto" >
+      </button>
+    </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngIf="this.tokenService.getToken()"[routerLink]="['/user/editprofil']"> <img src="../../../../assets/images/user.png" class="mr-2"/> Profil</button>
+    <button mat-menu-item [routerLink]="['info/collections']" *ngIf="this.tokenService.getToken()"> <img src="../../../../assets/images/collect.png" class="mr-2"/> Collections</button>
+    <button mat-menu-item [routerLink]="['info/reactions']" *ngIf="this.tokenService.getToken()"> <img src="../../../../assets/images/reaction.png" class="mr-2"/>Reactions</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item *ngIf="this.tokenService.getToken()" (click)="onLogout()" > <img src=".././../../../../assets/images/power.png" class="mr-2" />LogOut</button>
+    <button mat-menu-item *ngIf="!this.tokenService.getToken()" [routerLink]="['/user/loginregister']" > <img src="../../../../assets/images/enter.png" class="mr-2" />LogIn</button>
+  </mat-menu>
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+<router-outlet></router-outlet>

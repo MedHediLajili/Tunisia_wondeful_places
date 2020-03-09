@@ -1,0 +1,93 @@
+<div class="entete">
+  <h2>Your Collections</h2>
+  <button mat-mini-fab (click)="openDialogAjouterNewCollection()"> <i class="material-icons">add</i></button>
+</div>
+
+<mat-tab-group>
+  <mat-tab *ngFor="let collection of collections">
+    <ng-template mat-tab-label>
+      <div class="d-flex justify-content-around">
+        <button mat-button color="warn" (click)="deleteCollection(collection)">
+          <i class="material-icons">
+            highlight_off
+          </i>
+        </button>
+        <p>
+          {{collection.name}}
+        </p>
+        <button mat-button color="primary" (click)="onEdit(collection)"> <i class="material-icons">edit</i></button>
+      </div>
+    </ng-template>
+    <div class="container ml-50">
+      <div class="card-deck">
+        <mat-card class="example-card" *ngFor="let placecard of collectionsPlacesCards[collection.id] ;let j=index">
+          <button mat-icon-button class="clear">
+            <mat-icon class="material-icons" title="delete from collection" (click)="deletePlaceFromCollection(collection,placecard)">clear</mat-icon>
+          </button>
+          <mat-card-header>
+            <div mat-card-avatar *ngIf="placecard.images[0]" class="example-header-image">
+              <img src={{placecard.images[0].url}} alt="">
+            </div>
+            <mat-card-title>{{placecard.place.name}}</mat-card-title>
+            <mat-card-subtitle>{{placecard.state.name}}</mat-card-subtitle>
+          </mat-card-header>
+          <div id="{{'carouselExampleIndicators'+placecard.id +j }}" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to={{k}} [ngClass]="{'active': k===0}"
+                *ngFor="let k of placecard.indexes;"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item" [ngClass]="{'active': i===0}"
+                *ngFor="let image of placecard.images; let i=index">
+                <img class="d-block w-100" src={{image.url}} alt="First slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="{{'#carouselExampleIndicators'+placecard.id+ j }}" role="button"
+              data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="{{'#carouselExampleIndicators'+placecard.id +j }}" role="button"
+              data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <mat-card-content class="mt-3">
+            <p>
+              {{placecard.place.description}}
+            </p>
+          </mat-card-content>
+          <mat-divider></mat-divider>
+
+
+
+
+
+          <mat-card-actions>
+            <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="onLike(placecard);"
+              [ngStyle]="{'color': placecard.reaction.is_like === 1 ? 'palevioletred' : 'black' }">
+              <i class="material-icons">favorite_border</i>
+            </button>
+            <button mat-icon-button (click)="onFavoris(placecard);"
+              [ngStyle]="{'color': placecard.reaction.is_favoris === 1 ? '#FFD300' : 'black' }">
+              <mat-icon class="material-icons"> star_border </mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Example icon-button with a heart icon">
+              <mat-icon>share</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon class="material-icons"> add_circle_outline </mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngFor="let collection of collections;"
+                (click)="addPlaceToCollection(collection,placecard)">{{collection.name}}</button>
+            </mat-menu>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

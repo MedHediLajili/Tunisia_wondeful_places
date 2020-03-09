@@ -1,0 +1,56 @@
+
+
+  <!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light blue-grey lighten-5 mb-1" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+    <a class="navbar-brand" href="#">
+      <img class="logo" src="../../assets/images/logo.jpg" height="30" alt="">
+    </a>
+  </mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item mt-2">
+        <form action="">
+          <div class="bg-light rounded rounded-pill shadow-sm lope">
+            <div class="input-group">
+              <input type="search" placeholder="Enter the name of a city ?" aria-describedby="button-addon1" class="form-control border-0 bg-light mt-2 ml-4">
+              <div class="input-group-append">
+                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </li>
+      <li>
+        
+      </li>
+      <li class="nav-item">
+        <button mat-button class="compte" [matMenuTriggerFor]="menu">
+          <mat-icon class="my-4" aria-hidden="false">more_vert</mat-icon>
+        </button>
+      </li>
+    </ul>
+    <mat-menu #menu="matMenu">
+      <button  mat-menu-item >Register</button>
+      <button  mat-menu-item >Sign In</button>
+     </mat-menu>
+    <!-- Links -->
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+
+<div class="container-fluid">
+     <app-image-slide></app-image-slide>
+</div>
+
+

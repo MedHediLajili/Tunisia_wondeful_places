@@ -1,0 +1,40 @@
+
+.lope {
+  margin-left: 200px;
+   width: 600px;
+  }
+  .compte{
+    margin-left: 300px;
+  }
+  .form-control::placeholder {
+    font-size: 0.90rem;
+    color: #aaa;
+  }
+  .logo{
+      height: 50px;
+      width: 50px;
+      border-radius: 48%;
+  }
+  a{
+    font-family: 'times header';
+    font-weight: bold;
+  }
+  input::placeholder{
+    font-family: 'times header';
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  @media only screen and (min-width: 570px)  {
+  }
+
+  @media (max-width: 576px) {
+    .lope {
+      margin-left: 0px;
+       width: 300px;
+      }
+      .compte{
+        margin-left: 0px;
+      }
+  }
+

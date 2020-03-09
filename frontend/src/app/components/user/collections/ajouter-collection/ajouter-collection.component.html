@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <span>New Collection</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
+
+</mat-toolbar>
+<div mat-dialog-content>
+<form class="normal-form" >
+  <mat-grid-list cols="1" rowHeight="100px">
+    <mat-grid-tile>
+        <div class="controles-container">
+            <mat-form-field style="color: grey; font-weight: bold;">
+              <input matInput placeholder="Name" [(ngModel)]="this.collection.name" name="name">
+            </mat-form-field>
+          </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</form>
+</div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="this.collectionService.Clean(this.collection)">Clear</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onCreate()">Create</button>
+  </div>

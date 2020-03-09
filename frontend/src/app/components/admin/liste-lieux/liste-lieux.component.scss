@@ -1,0 +1,43 @@
+table {
+  width: 100%;
+}
+button{
+  font-size:10px ;
+  border-radius: 10%;
+}
+img {
+  width: 70px;
+  height: 70px;
+  border-radius: 25%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-header-cell{
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+}
+
+.mat-header-cell:nth-child(2),.mat-cell:nth-child(2){
+  flex:3%;
+}
+
+.mat-header-cell:nth-child(3),.mat-cell:nth-child(3){
+  flex:55%;
+}
+.mat-cell:nth-child(3){
+  padding-right: 20px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.mat-header-cell:last-child,.mat-cell:last-child{
+  flex:20%
+}
+
+.mat-header-cell:last-child{
+  padding-left: 75px;
+}

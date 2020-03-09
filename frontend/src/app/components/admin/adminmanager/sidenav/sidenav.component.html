@@ -1,0 +1,45 @@
+
+<mat-sidenav-container class="app-sidenav-container" >
+  <mat-sidenav #sidenav class="app-sidenav mat-elevation-z7"
+  [opened]="!isScreenSmall()"
+  [mode]="isScreenSmall() ? 'over' : 'side' ">
+    <mat-toolbar> <img src="../../../../../assets/images/logo.jpg" class="logo" /> Tunisia </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+        <mat-list-item>
+           <a matLine [routerLink]="['listeetats']">
+             <img src="../../../../../assets/images/capitol.png" class="mr-3"/> States
+           </a>
+        </mat-list-item>
+        <mat-list-item>
+            <a matLine [routerLink] = "['ajouteretat']" >
+               <img src="../../../../../assets/images/add.png" class="mr-3"/> Add State
+            </a>
+         </mat-list-item>
+         <mat-list-item>
+            <a matLine  [routerLink]="['listelieux']">
+              <img src="../../../../../assets/images/place.png" class="spe"/>Places
+            </a>
+         </mat-list-item>
+         <mat-list-item>
+            <a matLine [routerLink]="['ajouterlieu']">
+                <img src="../../../../../assets/images/add-pointer.png" class="mr-3"/> Add Place
+            </a>
+         </mat-list-item>
+         <mat-list-item>
+            <a matLine [routerLink]="['listeusers']" >
+               <img src="../../../../../assets/images/users.png" class="mr-3"/> Users
+            </a>
+         </mat-list-item>
+      </mat-nav-list>
+
+  </mat-sidenav>
+
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</mat-sidenav-container>
